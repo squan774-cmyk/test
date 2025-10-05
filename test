@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>簡単なゲーム</title>
+  <script src="https://cdn.jsdelivr.net/npm/phaser@3/dist/phaser.js"></script>
+  <style>
+    body { margin: 0; }
+    canvas { display: block; width: 100%; height: 100vh; }
+  </style>
+</head>
+<body>
+
+<script>
+const config = {
+    type: Phaser.AUTO,
+    width: window.innerWidth,
+    height: window.innerHeight,
+    scene: {
+        preload,
+        create,
+        update
+    }
+};
+
+const game = new Phaser.Game(config);
+
+let player;
+
+function preload() {
+    this.load.image('player', 'https://labs.phaser.io/assets/sprites/phaser-dude.png');
+}
+
+function create() {
+    player = this.add.sprite(100, 100, 'player');
+    player.setScale(2);
+}
+
+function update() {
+    player.x += 1;
+    if (player.x > window.innerWidth) {
+        player.x = 0;
+    }
+}
+</script>
+
+</body>
+</html>
